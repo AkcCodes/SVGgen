@@ -11,7 +11,7 @@ class Svg {
         return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">${this.shapeElement}${this.textElement}</svg>`
     }
     setTextElement(text,color){
-        this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${color}">${text}</text>`
+        this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">${text}</text>`
     }
     setShapeElement(shape){
         this.shapeElement = shape.render()
@@ -22,11 +22,7 @@ const questions = [{
     type: 'input',
     message: 'Enter up to (3) characters:',
     name: 'text',
-}, {
-    type: "input",
-    name: "text-color",
-    message: "TEXT COLOR: Enter a color keyword (OR a hexadecimal number):",
-},
+}, 
 {
     type: 'list',
     message: 'Choose a Shape:',
@@ -63,7 +59,7 @@ async function init(){
         console.log('Please enter 1-3 characters into the field.');
         return;
     }
-    user_font_color = answers["text-color"];
+    
     user_shape_type = answers["logo-shape"];
     user_shape_color = answers["shape-color"]
 
@@ -83,7 +79,7 @@ async function init(){
     user_shape.setColor(user_shape_color)
 
     var svg = new Svg();
-	svg.setTextElement(user_text, user_font_color);
+	svg.setTextElement(user_text);
 	svg.setShapeElement(user_shape);
 	svgString = svg.render();
 	
